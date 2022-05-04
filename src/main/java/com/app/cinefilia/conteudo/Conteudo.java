@@ -3,26 +3,30 @@ package com.app.cinefilia.conteudo;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
 @Data
 @Entity
-public class Conteudo {
+public class Conteudo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private boolean adult;
-    private String backdropPath;
-    @ManyToOne
-    private Long genreIds;
-    private String originalLanguage;
-    private String originalTitle;
+    private String backdrop_path;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Genero> genre_ids;
+    private String original_language;
+    private String original_title;
     @Column(length=1000000)
     @Lob
     private String overview;
     private double popularity;
-    private String posterPath;
-    private String releaseDate;
+    private String poster_path;
+    private String release_date;
     private String title;
     private boolean video;
-    private long voteAverage;
-    private long voteCount;
+    private long vote_average;
+    private long vote_count;
 }

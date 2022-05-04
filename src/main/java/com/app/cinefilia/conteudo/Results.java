@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 public class Results {
-    int page;
-    public List<Conteudo> results;
-    public int total_pages;
-    public int total_results;
+    private int page;
+    private List<Conteudo> results;
+    private int total_pages;
+    private int total_results;
 }

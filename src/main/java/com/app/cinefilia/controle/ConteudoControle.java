@@ -1,6 +1,7 @@
 package com.app.cinefilia.controle;
 
 import com.app.cinefilia.conteudo.Conteudo;
+import com.app.cinefilia.conteudo.Genero;
 import com.app.cinefilia.conteudo.Titulo;
 import com.app.cinefilia.servico.ServicoConteudo;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
+import java.awt.geom.GeneralPath;
 
 @RestController
 @RequestMapping("/api/v1/conteudo")
@@ -17,8 +19,8 @@ public class ConteudoControle {
     private ServicoConteudo servicoConteudo;
 
     @GetMapping
-    public ResponseEntity<Iterable<Conteudo>> buscarTodos(){
-        return ResponseEntity.ok(servicoConteudo.buscarTodos());
+    public ResponseEntity<Iterable<Genero>> buscarTodosGeneros(){
+        return ResponseEntity.ok(servicoConteudo.buscarTodosGeneros());
     }
 
     @PostMapping()
