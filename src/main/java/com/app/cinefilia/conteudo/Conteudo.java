@@ -15,7 +15,7 @@ public class Conteudo implements Serializable {
     private boolean adult;
     private String backdrop_path;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany
     private List<Genero> genre_ids;
     private String original_language;
     private String original_title;

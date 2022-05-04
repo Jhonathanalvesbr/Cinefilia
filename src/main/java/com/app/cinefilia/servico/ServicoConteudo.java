@@ -53,7 +53,13 @@ public class ServicoConteudo implements ServicoConteudoInterface{
         if(repositorioGeneroAll.size() == 0 || generos.getGenres().size() > repositorioGeneroAll.size()){
             for (Genero obj: generos.getGenres()) {
                 if(repositorioGeneroAll.indexOf(obj) < 0){
+                    for (Genero id:generos.getGenres()
+                    ) {
+
+                    }
+                    obj.setName(generos.getGenres().get());
                     repositorioGenero.save(obj);
+                    System.out.println(obj);
                 }
             }
         }
