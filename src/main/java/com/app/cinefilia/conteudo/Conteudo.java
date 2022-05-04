@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 public class Conteudo implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private boolean adult;
     private String backdrop_path;

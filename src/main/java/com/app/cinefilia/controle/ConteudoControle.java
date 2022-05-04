@@ -19,8 +19,8 @@ public class ConteudoControle {
     private ServicoConteudo servicoConteudo;
 
     @GetMapping
-    public ResponseEntity<Iterable<Genero>> buscarTodosGeneros(){
-        return ResponseEntity.ok(servicoConteudo.buscarTodosGeneros());
+    public ResponseEntity<Iterable<Conteudo>> buscarTodos(){
+        return ResponseEntity.ok(servicoConteudo.buscarTodos());
     }
 
     @PostMapping()

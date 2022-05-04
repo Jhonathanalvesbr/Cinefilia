@@ -41,39 +41,30 @@ public class ServicoConteudo implements ServicoConteudoInterface{
 
 
     public Iterable<Conteudo> buscarTitulo(String title) throws JsonProcessingException {
-        ArrayList<Conteudo> conteudos = (ArrayList<Conteudo>) repositorioConteudo.findAll();
         ArrayList<Conteudo> conteudo = new ArrayList<>();
+        Map<Integer, String> map = new HashMap<Integer, String>();
         Generos generos = servicoClienteTheMoviedbGenero.resultadoGeneroFilmes();
         Generos tv = servicoClienteTheMoviedbGenero.resultadoGeneroTV();
-        for (Genero obj:tv.getGenres()
-             ) {
-            generos.getGenres().add(obj);
+        generos.getGenres().addAll(tv.getGenres());
+        for (Genero obj:generos.getGenres()) {
+            map.put(obj.getId(), obj.getName());
         }
         ArrayList<Genero> repositorioGeneroAll = (ArrayList<Genero>) repositorioGenero.findAll();
         if(repositorioGeneroAll.size() == 0 || generos.getGenres().size() > repositorioGeneroAll.size()){
             for (Genero obj: generos.getGenres()) {
                 if(repositorioGeneroAll.indexOf(obj) < 0){
-                    for (Genero id:generos.getGenres()
-                    ) {
-
-                    }
-                    obj.setName(generos.getGenres().get());
+                    obj.setName(map.get(obj.getId()));
                     repositorioGenero.save(obj);
-                    System.out.println(obj);
                 }
             }
         }
-        for (Conteudo titulo:conteudos
-             ) {
-            if(titulo.getTitle().equals(title)){
-                conteudo.add(titulo);
-            }
-        }
-
         Results data = servicoClienteTheMoviedb.conteudoResultado(title);
         for (Conteudo cont: data.getResults()) {
-                if(conteudo.indexOf(cont) == -1){
+                if(!repositorioConteudo.findById(cont.getId()).isPresent()){
                     conteudo.add(cont);
+                    for (Genero gene: cont.getGenre_ids()) {
+                        gene.setName(map.get(gene.getId()));
+                    }
                     repositorioConteudo.save(cont);
                 }
             }
