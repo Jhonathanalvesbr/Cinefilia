@@ -23,6 +23,11 @@ public class ConteudoControle {
         return ResponseEntity.ok(servicoConteudo.buscarTodos());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Conteudo> buscarID(Long id){
+        return ResponseEntity.ok(servicoConteudo.buscarID(id));
+    }
+
     @PostMapping
     public Iterable<Conteudo> inserirConteudo(@RequestBody Titulo titulo) throws JsonProcessingException {
         return servicoConteudo.buscarTitulo(titulo.getTitle());

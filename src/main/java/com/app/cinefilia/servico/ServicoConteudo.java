@@ -26,17 +26,17 @@ public class ServicoConteudo implements ServicoConteudoInterface{
         return repositorioConteudo.findAll();
     }
 
-    public Iterable<Genero> buscarTodosGeneros() {
-        return repositorioGenero.findAll();
+    @Override
+    public Conteudo buscarID(Long id) {
+        Optional<Conteudo> conteudo = repositorioConteudo.findById(id);
+        if(conteudo.isPresent()){
+            return conteudo.get();
+        }
+        return null;
     }
 
-    @Override
-    public void inserir(Titulo titulo) {
-        try {
-            buscarTitulo(titulo.getTitle());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+    public Iterable<Genero> buscarTodosGeneros() {
+        return repositorioGenero.findAll();
     }
 
 

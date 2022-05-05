@@ -6,7 +6,7 @@ import com.app.cinefilia.conteudo.Titulo;
 public interface ServicoConteudoInterface {
     Iterable<Conteudo> buscarTodos();
 
-    void inserir(Titulo titulo);
+    Conteudo buscarID(Long id);
 
     void atualizar(Long id, Conteudo conteudo);
 
