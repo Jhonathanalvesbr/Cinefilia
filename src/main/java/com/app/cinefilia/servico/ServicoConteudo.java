@@ -72,12 +72,15 @@ public class ServicoConteudo implements ServicoConteudoInterface{
     }
 
     @Override
-    public void atualizar(Long id) {
-
+    public void atualizar(Long id, Conteudo conteudo) {
+        Optional<Conteudo> cont = repositorioConteudo.findById(id);
+        if(cont.isPresent()){
+            repositorioConteudo.save(conteudo);
+        }
     }
 
     @Override
     public void deletar(Long id) {
-
+        repositorioConteudo.deleteById(id);
     }
 }

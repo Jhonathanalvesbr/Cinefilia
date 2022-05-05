@@ -8,7 +8,7 @@ public interface ServicoConteudoInterface {
 
     void inserir(Titulo titulo);
 
-    void atualizar(Long id);
+    void atualizar(Long id, Conteudo conteudo);
 
     void deletar(Long id);
 }

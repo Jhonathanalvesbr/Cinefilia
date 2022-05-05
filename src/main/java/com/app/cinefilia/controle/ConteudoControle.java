@@ -23,9 +23,19 @@ public class ConteudoControle {
         return ResponseEntity.ok(servicoConteudo.buscarTodos());
     }
 
-    @PostMapping()
+    @PostMapping
     public Iterable<Conteudo> inserirConteudo(@RequestBody Titulo titulo) throws JsonProcessingException {
         return servicoConteudo.buscarTitulo(titulo.getTitle());
+    }
 
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<Void> deletar(@PathVariable long id){
+        servicoConteudo.deletar(id);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/{id}")
+    public  ResponseEntity<Conteudo> atualizar(@PathVariable long id, @RequestBody Conteudo conteudo){
+        servicoConteudo.atualizar(id, conteudo);
+        return ResponseEntity.ok(conteudo);
     }
 }
